@@ -1,0 +1,41 @@
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:0 200px;
+  height: 64px;
+  background-color: rgba(3,37,65);
+
+  .header-btns {
+    .logo {
+      width: 155px;
+      height: 20px;
+    }
+    .plus {
+      width: 30px;
+      height: 30px;
+    }
+    div, img:not(:last-child) {
+      margin-right: 20px;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.5rem 0.5rem;
+      outline: 0;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      -ms-flex-align: center;
+      position: relative;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+  }
+}

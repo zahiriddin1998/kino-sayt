@@ -1,0 +1,108 @@
+<div class="container">
+  <header>
+    <div class="header-top-item">
+      <div class="header-top-title">Добро пожаловать.</div>
+      <div class="header-top-text">Миллионы фильмов, сериалов и людей. Исследуйте сейчас.</div>
+      <input class="header-top-input" type="text" placeholder="Найти фильм, сериал персону......">
+    </div>
+    <div class="header-bottom-item">
+      <div class="header-bottom-title">THAT'S A <br> WRAP 2022</div>
+      <div class="header-bottom-text">The best (and worst) from 2022.</div>
+      <div class="header-bottom-btn">Check it out</div>
+    </div>
+  </header>
+
+
+
+  <div class="content">
+
+    <!--  In trend-->
+    <div class="trends">
+      <div class="d-flex">
+        <div class="header-trend">В тренде</div>
+        <div class="selector">
+          <div class="today"
+               [class.active]="inTrend === 'day'"
+               (click)="changeTrend('day')">Сегодня
+          </div>
+          <div class="week"
+               [class.active]="inTrend === 'week'"
+               (click)="changeTrend('week')">На этой неделе
+          </div>
+        </div>
+      </div>
+
+      <div class="background-image">
+        <div class="scroller">
+          <div class="trends-mov-card" *ngFor="let trend of trends" [routerLink]="['/movieData', 'movieID']">
+            <div class="trends-card-header">
+              <img class="card-img" [src]="'https://www.themoviedb.org/t/p/w220_and_h330_face/' + trend.poster_path">
+            </div>
+            <div class="trends-card-content">
+              <div class="card-title">{{trend.title}}</div>
+              <div class="card-data">{{trend.release_date}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!--    Latest trailers-->
+
+    <div class="trailers">
+      <div class="d-flex">
+        <div class="header-trailers">Последние трейлерые</div>
+        <div class="selector">
+          <div class="trailers-btn"
+               [class.active]="inPopular === 'streaming'"
+               (click)="changePopular('streaming')">Онлайн
+          </div>
+          <div class="trailers-btn"
+               [class.active]="inPopular === 'on-tv'"
+               (click)="changePopular('on-tv')">По ТВе
+          </div>
+          <div class="trailers-btn"
+               [class.active]="inPopular === 'for-rent'"
+               (click)="changePopular('for-rent')">Напрокат
+          </div>
+          <div class="trailers-btn"
+               [class.active]="inPopular === 'in-theatres'"
+               (click)="changePopular('in-theatres')">В кинотеатрах
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="template; else onTv">
+        <div class="scroller">
+          <div class="trailers-mov-card" *ngFor="let popular of populars" routerLink="movieId">
+            <div class="trailers-card-header">
+              <img class="card-img" [src]="'https://www.themoviedb.org/t/p/w220_and_h330_face/' + popular.poster_path">
+            </div>
+            <div class="trailers-card-content">
+              <div class="card-title">{{popular.title}}</div>
+              <div class="card-data">{{popular.date}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #onTv>
+        <div class="scroller">
+          <div *ngFor="let onTv of onTvs" class="trailers-mov-card">
+            <div class="trailers-card-header">
+              <img class="card-img" [src]="'https://www.themoviedb.org/t/p/w220_and_h330_face/' + onTv.poster_path">
+            </div>
+            <div class="trailers-card-content">
+              <div class="card-title">{{onTv.name}}</div>
+              <div class="card-data">{{onTv.first_air_date}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #popular>
+      </ng-template>
+    </div>
+  </div>
+</div>
